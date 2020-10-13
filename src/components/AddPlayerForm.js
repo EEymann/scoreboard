@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class AddPlayerForm extends Component {
 
-  state={
+  state= { 
     value: ''
   }
 
@@ -10,10 +10,17 @@ class AddPlayerForm extends Component {
     this.setState({ value: e.target.value});
   }
 
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.props.addPlayer(this.state.value);
+    this.setState({ value: ''}); //Clears field upon submit
+  }
+
   render() {
-    console.log(this.state.value)
+    
     return (
-      <form>
+      <form onSubmit={this.handleSubmit}>
         <input
         type="text"
         value={this.state.value}
