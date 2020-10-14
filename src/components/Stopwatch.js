@@ -26,18 +26,18 @@ class Stopwatch extends Component {
   tick = () => {
     if (this.state.isRunning) {
       const now = Date.now();
-      this.setState({
+      this.setState( prevState => ({
         previousTime: now,
-        elapsedTime: this.state.elapsedTime + (now - this.state.previousTime)
-      });
+        elapsedTime: prevState.elapsedTime + (now - this.state.previousTime)
+      }));
     }
   }
 
 //When triggered, state = opposite of whatever current state is, causing the button to toggle between "start" and "stop"
   handleStopwatch = () => {
-    this.setState({
-      isRunning: !this.state.isRunning //The oppososite of the current state
-    });
+    this.setState( prevState => ({
+      isRunning: !prevState.isRunning //The oppososite of the current state
+    }));
     if (!this.state.isRunning) {
       this.setState({ previousTime: Date.now() }); // Date.now returns the exact number of milliseconds elapsed since Jan 1st of 1970
     }
