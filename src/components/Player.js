@@ -12,25 +12,30 @@ import Counter from './Counter'
 //Now only the player with the updated score will rerender as opposed to the entire list of players.
 
 class Player extends PureComponent {
-  render() {
-    console.log(this.props.name + ' rendered')
+  render() { //In classes, in classes props are not accessed through a props parameter, like they are in functions. To destructur from this.props, you use a variable assignment. 
+    const {
+      name,
+      id,
+      score,
+      index,
+      removePlayer,
+      changeScore
+     } = this.props;
+    console.log(name + ' rendered')
     return (
       <div className="player">
         <span className="player-name">
-          <button className="remove-player" onClick={() => this.props.removePlayer(this.props.id)}>✖</button>
-          { this.props.name }
+          <button className="remove-player" onClick={() => removePlayer(id)}>✖</button>
+          { name }
         </span>
   
-        <Counter score={this.props.score}
-          index={this.props.index}
-          changeScore={this.props.changeScore}
+        <Counter score={score}
+          index={index}
+          changeScore={changeScore}
         />
       </div>
     );
   }
 }
-// const Player = (this.props) => {
-
-// }
 
 export default Player;
