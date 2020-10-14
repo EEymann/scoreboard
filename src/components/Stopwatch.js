@@ -9,8 +9,16 @@ class Stopwatch extends Component {
     previousTime: 0
   };
 
+  //As soon as the Stopwatch component mounts, the interval is set,
+  // repeatedly calling tick.
   componentDidMount() {
       this.intervalID = setInterval(() => this.tick(), 100)
+  }
+// If for some reason the stop watch no longer needs to be rendered,
+// the componentWillUnmount method will clear the interval so
+// so its no longer ticking away and taking up memory.
+  componentWillUnmount() {
+    clearInterval(this.intervalID);
   }
   
 // If isRunning is true, update the timer. Current time is stored in the variable now,
