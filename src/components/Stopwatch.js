@@ -7,10 +7,10 @@ class Stopwatch extends Component {
     isRunning: false
   };
 
-
+//When triggered, state = opposite of whatever current state is, causing the button to toggle between "start" and "stop"
   handleStopwatch = () => {
     this.setState({
-      isRunning: !this.state.isRunning
+      isRunning: !this.state.isRunning //The oppososite of the current state
     });
   }
 
@@ -19,10 +19,11 @@ class Stopwatch extends Component {
       <div className="stopwatch">
         <h2>Stopwatch</h2>
         <span className="stopwatch-time">0</span>
-        <button onClick={this.handleStopwatch}></button>
-        <button>{this.state.isRunning ? 'Stop' : 'Start'}</button>
+        <button onClick={this.handleStopwatch}>
+        {this.state.isRunning ? 'Stop' : 'Start'}
+        </button>
         <button>Reset</button>
-        </div>
+      </div>
     );
   }
 }
