@@ -43,15 +43,25 @@ class Stopwatch extends Component {
     }
   }
 
+  //When triggered, reset button is updated to 0
+  handleReset = () => {
+    this.setState({ elapsedTime: 0})
+  }
+
   render() {
+
+    const seconds = Math.floor(this.state.elapsedTime / 1000) //Converts miliseconds to seconds
+
     return (
       <div className="stopwatch">
         <h2>Stopwatch</h2>
-        <span className="stopwatch-time">0</span>
+        <span className="stopwatch-time">
+          { seconds } 
+        </span>
         <button onClick={this.handleStopwatch}>
         {this.state.isRunning ? 'Stop' : 'Start'}
         </button>
-        <button>Reset</button>
+        <button onClick={this.handleReset}>Reset</button>
       </div>
     );
   }
