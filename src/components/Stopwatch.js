@@ -4,14 +4,43 @@ import React, { Component } from 'react';
 class Stopwatch extends Component {
 
   state = {
-    isRunning: false
+    isRunning: false,
+    elapsedTime: 0,
+    previousTime: 0
   };
+
+  componentDidMount() {
+      this.intervalID = setInterval(() => this.tick(), 100)
+  }
+  
+// If isRunning is true, update the timer. Current time is stored in the variable now,
+// then, update state. Update two pieces of state here: previousTime & elapsedTime,
+// previous time gets updated to now so we can use it to calculate the elapsed time or the time since the previous tick.
+// The elapsedTime value increases by the amount of miliseconds that have elapsed since the last tick. 
+// We determine the elapsedTime by calculating the difference between now's time stamp and the time stamp stored in state.previousTime
+// Then, increase the elapsedTime by adding the difference to this.state.elapsedTime.
+// So each time tick runs, if isRunning is true, setState is going to update elapsedTime using the difference between previousTime and now.
+// At the same time, it updates previousTime to Date.now. 
+// This is exectuted over and over as long as timer is running. 
+
+  tick = () => {
+    if (this.state.isRunning) {
+      const now = Date.now();
+      this.setState({
+        previousTime: now,
+        elapsedTime: this.state.elapsedTime + (now - this.state.previousTime)
+      });
+    }
+  }
 
 //When triggered, state = opposite of whatever current state is, causing the button to toggle between "start" and "stop"
   handleStopwatch = () => {
     this.setState({
       isRunning: !this.state.isRunning //The oppososite of the current state
     });
+    if (!this.state.isRunning) {
+      this.setState({ previousTime: Date.now() }); // Date.now returns the exact number of milliseconds elapsed since Jan 1st of 1970
+    }
   }
 
   render() {
