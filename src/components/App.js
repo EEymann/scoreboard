@@ -81,7 +81,6 @@ class App extends Component {
     return (
       <div className="scoreboard">
         <Header 
-          title="Scoreboard" 
           players={this.state.players} 
         />
   

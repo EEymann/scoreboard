@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
-import Counter from './Counter'
+import PropTypes from 'prop-types';
+import Counter from './Counter';
 
 
 //PureComponent is a more performant version of component
@@ -12,6 +13,16 @@ import Counter from './Counter'
 //Now only the player with the updated score will rerender as opposed to the entire list of players.
 
 class Player extends PureComponent {
+
+  static propTypes = {
+    changeScore: PropTypes.func,
+    removePlayer: PropTypes.func,
+    name: PropTypes.string.isRequired,
+    score: PropTypes.number.isRequired,
+    id: PropTypes.number,
+    index: PropTypes.number
+  };
+
   render() { //In classes, in classes props are not accessed through a props parameter, like they are in functions. To destructur from this.props, you use a variable assignment. 
     const {
       name,
