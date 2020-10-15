@@ -1,5 +1,6 @@
 
 import React from 'react';
+import Proptypes from 'prop-types';
 
 const Counter = ({index, score, changeScore }) => {
     return (
@@ -10,5 +11,12 @@ const Counter = ({index, score, changeScore }) => {
       </div>
     );
 }
-  
+  //The propTypes object contains the props being passed to the component as its keys.
+  //The counter component accepts three props: index, score and changeScore
+  Counter.propTypes = {
+    index: Proptypes.number,
+    score: Proptypes.number,
+    changeScore: Proptypes.func
+  };
+
   export default Counter;
