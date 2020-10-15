@@ -5,7 +5,7 @@
 #### _This scoreboard application is multi-functional. By default it comes with four players, but users can add and remove players as they please. It has a built-in stopwatch that the user can start, stop, and reset. The app also has the ability to keep track of each player's score. The player with the highest score gets a gold crown! October 2020_
 
 
-_This project was built with skills learned from the course "React Components" for [Treehouse](https://teamtreehouse.com/).
+_This project was built with skills learned from the course "React Components" for [Treehouse](https://teamtreehouse.com/)._
 
 ## Setup/Installation Requirements
 
