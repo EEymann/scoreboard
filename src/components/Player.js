@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import Counter from './Counter';
+import Icon from './Icon';
 
 
 //PureComponent is a more performant version of component
@@ -20,7 +21,8 @@ class Player extends PureComponent {
     name: PropTypes.string.isRequired,
     score: PropTypes.number.isRequired,
     id: PropTypes.number,
-    index: PropTypes.number
+    index: PropTypes.number,
+    isHighScore: PropTypes.bool
   };
 
   render() { //In classes, in classes props are not accessed through a props parameter, like they are in functions. To destructur from this.props, you use a variable assignment. 
@@ -37,6 +39,8 @@ class Player extends PureComponent {
       <div className="player">
         <span className="player-name">
           <button className="remove-player" onClick={() => removePlayer(id)}>✖</button>
+          
+          <Icon isHighScore={this.props.isHighScore} />
           { name }
         </span>
   

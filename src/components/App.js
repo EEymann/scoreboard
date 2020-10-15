@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Header from './Header';
 import Player from './Player' //Also brings in counter
 import AddPlayerForm from './AddPlayerForm';
+import { render } from 'react-dom';
 
 class App extends Component {
   state = {
@@ -76,8 +77,19 @@ class App extends Component {
     });
   }
 
+  getHighScore = () => {
+    const scores = this.state.players.map( p => p.score );
+    const highScore = Math.max(...scores);
+    if (highScore) {
+      return highScore;
+    }
+    return null;
+  }
+  
+
   render() {
-    console.log(this.state.players);
+    const highScore = this.getHighScore();
+
     return (
       <div className="scoreboard">
         <Header 
@@ -93,7 +105,8 @@ class App extends Component {
             key={player.id.toString()}
             index={index}
             changeScore={this.handleScoreChange} 
-            removePlayer={this.handleRemovePlayer}           
+            removePlayer={this.handleRemovePlayer}
+            isHighScore={highScore === player.score} //Is a player's 'score' prop equal to the high score?          
           />
         )}
 
@@ -102,5 +115,7 @@ class App extends Component {
     );
   }
 }
+
+
 
 export default App;
