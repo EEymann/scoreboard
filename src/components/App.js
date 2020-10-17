@@ -4,6 +4,7 @@ import Player from './Player' //Also brings in counter
 import AddPlayerForm from './AddPlayerForm';
 import { render } from 'react-dom';
 
+// This lets you export your components to other files
 class App extends Component {
   state = {
     players: [
